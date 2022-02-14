@@ -3,7 +3,16 @@ Console exibirá o resultado 5 e 10
 
 Questão 2
 Será impresso, três números 10 no console
+
+Questão 3
+let folhaDePonto = prompt("Quantas horas você trabalha por dia?")
+let salarioDiaria = prompt("Quanto você recebe por dia?")
+alert(`Voce recebe ${salarioDiaria/folhaDePonto} por hora`)
+
+Esse programa faz um cálculo de quanto o "funcionário" recebe por hora trabalhada.
 */
+
+
 let nome
 let idade
 console.log(typeof nome)
