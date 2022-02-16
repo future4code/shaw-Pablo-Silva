@@ -46,9 +46,12 @@ let comidasFavoritas = ["Strogonoff", "macarrão", "arroz", "feijão", "salpicã
 console.log(comidasFavoritas)
 
 
-let indiceComidas = comidasFavoritas[4]
-console.log("Essas são minhas comidas preferidas:", comidasFavoritas)
-
+let indiceComidas = comidasFavoritas
+console.log("Essas são minhas comidas preferidas:", comidasFavoritas[0])
+console.log(comidasFavoritas[1])
+console.log(comidasFavoritas[2])
+console.log(comidasFavoritas[3])
+console.log(comidasFavoritas[4])
 
 
 let comidaEscolhida = prompt("Digita aqui sua comida favorita:")
