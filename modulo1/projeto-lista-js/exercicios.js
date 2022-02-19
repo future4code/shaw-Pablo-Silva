@@ -159,7 +159,20 @@ function checaAnoBissexto(ano) {
 }
 
 // EXERCÍCIO 15
-function checaValidadeInscricaoLabenu() {
-  // implemente sua lógica aqui
 
-}
+    function checaValidadeInscricaoLabenu() {
+    let maiorDeIdade = prompt('Você é maior de 18 anos ?').toUpperCase().trim()
+    let ensinoMedio = prompt('Tem ensino médio completo ?').toUpperCase().trim()
+    let disponibilidadeParaOcurso = prompt('Você é maior de 18 anos ?').toUpperCase().trim()
+    var resultado = false
+    
+      if(maiorDeIdade === 'SIM' && ensinoMedio ==='SIM' && disponibilidadeParaOcurso === 'SIM'){
+
+       resultado = true
+
+      }
+      console.log(resultado);
+
+      }
+
+      checaValidadeInscricaoLabenu()
