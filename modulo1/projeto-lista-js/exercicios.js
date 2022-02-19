@@ -119,10 +119,38 @@ function checaIgualdadeDesconsiderandoCase(string1, string2) {
 
 
 // EXERCÍCIO 13
-function checaRenovacaoRG() {
-  // implemente sua lógica aqui
+  function checaRenovacaoRG() {
+    let anoAtual = Number(prompt('Digite o ano atual'))
+    let anoNascimento = Number(prompt('Digite seu ano de nascimento'))
+    let anoCarteiraIdent = Number(prompt('Digite o ano de emissão da sua carteira'))
+    let idade = anoAtual - anoNascimento
+    var resultado = false
+    var diferecaDeAnos = anoAtual - anoCarteiraIdent
+  
+    if(idade <= 20){ 
+  
+      if(diferecaDeAnos >= 5){
+        resultado = true
+      }
+  
+    }else if(idade > 20 && idade <= 50){
+  
+  
+     if(diferecaDeAnos >= 10){
+       resultado =  true   
+      }
+  
+    }else if(idade > 50){
+  
+      if(diferecaDeAnos > 50){
+        resultado = true
+      }
+    }  
+    
+    console.log(resultado)
+    }
 
-}
+    checaRenovacaoRG()
 
 // EXERCÍCIO 14
 function checaAnoBissexto(ano) {
