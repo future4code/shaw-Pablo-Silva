@@ -33,6 +33,88 @@ if(numPet === 0){
 
  //Exercício 2
 
+//a
+
+const arrayOriginal = [20, 30, 50, 23, 29]
+function exibirArray(array){
+    for(let elemento of array){
+       
+        console.log(elemento)
+
+
+    }         
+
+}
+exibirArray(arrayOriginal)
+
+//b
+
+function divisaoElementos(array){
+    for(let elemento of array){
+        console.log(elemento / 10)
+    }
+
+}
+divisaoElementos(arrayOriginal)
+
+//c
+
+function numerosPares(array) {
+    const numPares = []
+    for(let elemento of array){
+    if(elemento % 2 === 0){
+        numPares.push(elemento)
+        
+    }   
+
+   }
+console.log(numPares)
+}
+    
+numerosPares(arrayOriginal)
+
+
+//d
+function indices(array){
+    const arrayIndice = []
+    for(let i = 0; i < array.length; i++){
+    const texto = `O elemento do índex ${i} é: ${array[i]}`
+    arrayIndice.push(texto)
+
+    }
+console.log(arrayIndice)
+}
+
+indices(arrayOriginal)
+
+//e
+
+function valores(array){
+let valorMaximo = 20
+let valorMinimo = 55
+for (const elemento of array){    
+    if(elemento > valorMaximo){
+                valorMaximo = elemento         
+    }else if(elemento < valorMinimo){
+        valorMinimo = elemento
+    }
+}
+console.log(`O valor máximo é ${valorMinimo} e o menor é ${valorMaximo}`)
+}
+
+valores(arrayOriginal)
+
+
+/*Poderia ser simplificado dessa forma
+function formaSimples(array) {
+    let min = Math.min(...array)
+    let max = Math.max(...array)
+    console.log(console.log(`O valor máximo é ${min} e o menor é ${max}`)
+
+}
+
+formaSimples(arrayOriginal)*/
+
 
 
  
