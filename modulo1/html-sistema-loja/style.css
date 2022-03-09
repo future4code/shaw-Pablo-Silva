@@ -1,0 +1,47 @@
+/* index.html */
+#corh1{
+    color: aqua;
+}
+
+
+#corh3{
+    display: inline;
+    background-color: antiquewhite;
+    
+}
+
+.imgredesocial{
+    width: 20px;
+}
+/* controleDeEstoque.html */
+#cortxt{
+    color: brown;
+}
+
+#tamanhopic{
+    display: flex;
+    color: blue;
+    width: 50px;
+    
+}
+
+
+#tamanhotxt {
+    color: blue;
+}
+
+.cordefundo{
+    background-color:beige;
+    border: 80px;
+    
+}
+
+#corh2{
+    color: blue;
+    
+}
+
+
+
+
+
