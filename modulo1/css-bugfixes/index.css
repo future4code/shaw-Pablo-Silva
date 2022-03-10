@@ -19,6 +19,14 @@ h2 {
 input {
     height: 20px;
     width: 500px;
+    border-width: 0px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 2px;
+    border-left-width: 0px;
+    
+   
+
 }
 
 button:focus {
@@ -104,18 +112,19 @@ div:last-child {
 
 table {
     width: 40%;
-    text-align: center;
+    text-align: center; 
     
     
 
 }
 
-td button:hover:active {
+td button :hover:active {
     background-color: #fadf63;
     width: 150px;
     height: 30px;
     border-radius: 5px;
     color: black;
+    
     
     
 }
