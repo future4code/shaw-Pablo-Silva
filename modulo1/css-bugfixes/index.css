@@ -110,12 +110,14 @@ table {
 
 }
 
-td button {
+td button:hover:active {
     background-color: #fadf63;
     width: 150px;
     height: 30px;
     border-radius: 5px;
     color: black;
+    
+    
 }
 
 .container-do-search {
