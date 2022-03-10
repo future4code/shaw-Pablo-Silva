@@ -7,7 +7,8 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
+
 }
 
 h2 {
@@ -116,7 +117,10 @@ div:last-child {
 
 table {
     width: 40%;
-    text-align: center;
+    text-align: center; 
+    margin: auto 
+        
+    
     
     
 }
@@ -146,6 +150,7 @@ td button :hover:active {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    
 }
 
 #back-button:hover {
