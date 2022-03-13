@@ -5,8 +5,20 @@
     
 }
 
-img{
-    width: 150px;
+.imgprojetolojinha{
+    width: 100px;
+    margin-top: 40px;
+    
+
+}
+
+.imgprojetosblack{
+    width: 100px;
+    margin-top: 30px;
+}
+.imgprojetosjs{
+    width: 100px;
+    margin-top: 20px;
 }
 
 #fotopessoal{
@@ -15,13 +27,7 @@ img{
 
 
 
-button:active{
-    background-color: rgb(3, 3, 15);
-}  
 
-button:hover{
-    color: rgb(243, 16, 16);
-}
 
 #tamanhoimg{
     width: 30px;
@@ -51,6 +57,9 @@ font: bold 15px arial, sans-serif;
     
 }
 
+a{
+    text-decoration: none;
+}
 #botaostyle{
 background: #f0f4f7;
 color: rgb(4, 7, 39);
@@ -59,6 +68,8 @@ border-radius: 10px;
 height: 25px;
 width: 155px;
 font: bold 13px arial, sans-serif;
+margin-left: 200px;
+margin-right: 100px;
 }
 
 #botaostyle:hover{
@@ -80,5 +91,63 @@ body{
     background-size: 2500px;
 }
 
+.redes-sociais{
+    float: right;
+}
 
+.redessociaisimgum{    
+    width: 30px;
+}
+
+.redessociaisimg{
+    width: 30px;
+    margin-left: 20px;
+}
+
+.floatblackjack{
+    float:left;
+    margin-left: 700px;
+    margin-right: 300x;
+    margin-top: 10px;
+   
+    
+}
+
+
+.floatprojetojs{
+    float:right;
+    margin-right: 500px;  
+    margin-right: 100px;
+    
+    
+}
+
+.floatsistemalojinha{
+    float:left;
+    margin-right: 150px;
+    margin-top: -202px;  
+
+}
+
+.margin{
+    margin: 280px;
+    margin-bottom: 10px;
+}
+
+.imgsociaisctt{
+    width: 30px;
+    margin-left: 20px;
+    margin-top: 520px;
+}
+
+.ctt{
+    margin-top: 90px;
+}
+
+.imgsociaiscttum{
+    width: 30px;
+    margin-left: 20px;
+    margin-top: 550px;
+
+}
 
