@@ -85,7 +85,7 @@ export default class Users extends React.Component {
         {this.state.currentPage === "usersList" ? (
           <div>
             <ul>
-              {this.state.usersList.length === 0 && <div>Carregando...</div>}
+              {this.state.usersList.length === 0 && <div>Aguarde...</div>}
               {this.state.usersList.map(user => {
                 return (
                   <li>

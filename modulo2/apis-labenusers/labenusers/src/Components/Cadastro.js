@@ -1,5 +1,10 @@
 import React from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const ContainerInput = styled.div`
+
+`
 
 export default class SignUpPage extends React.Component {
   state = {
@@ -48,6 +53,7 @@ export default class SignUpPage extends React.Component {
 
   render() {
     return (
+      <ContainerInput>
       <div>
         <input
           placeholder="Nome"
@@ -63,6 +69,7 @@ export default class SignUpPage extends React.Component {
         />
         <button onClick={this.handleCreateUser}>Cadastrar</button>
       </div>
+      </ContainerInput>
     );
   }
 }
