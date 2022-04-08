@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import Playlist from '../src/Components/CriarPlaylists'
+import AddMusica from '../src/Components/AddMusicas'
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+
+
+  state = {
+    idPlaylist: '',
+
+
+  }
+
+  saveId = (id) => {
+    this.setState({idPlaylist:id})
+
+  }
+
+  render() {
+    return (
+      <div>
+        
+        <Playlist />
+        <AddMusica id = {this.state.idPlaylist}/>
+
+
+        
+
+      </div>
+    );
+  }
+
 }
 
-export default App;
+
