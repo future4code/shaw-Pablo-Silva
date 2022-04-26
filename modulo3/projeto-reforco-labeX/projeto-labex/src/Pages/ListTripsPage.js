@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from '@mui/material/Button'
+import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
 display: flex;
@@ -37,11 +38,22 @@ margin: 20px;
 
 
 const ListTripsPage = () => {
+
+    const navigate = useNavigate()
+
+    const goToHomePage = () => {
+        navigate('/')
+    }
+     
+    const goToApplicationFormPage = () => {
+        navigate('/ApplicationFormPage')
+    }
+
     return (
         <Container>
             <ButtonStyle>
-                <Button className='button1' variant="outlined"><strong>Voltar</strong></Button>
-                <Button className='button2' variant="outlined"> <strong>Inscrever-se</strong></Button>
+                <Button onClick={goToHomePage} className='button1' variant="outlined"><strong>Voltar</strong></Button>
+                <Button onClick={goToApplicationFormPage} className='button2' variant="outlined"> <strong>Inscrever-se</strong></Button>
             </ButtonStyle>
 
 

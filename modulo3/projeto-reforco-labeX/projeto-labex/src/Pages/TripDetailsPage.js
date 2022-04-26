@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from '@mui/material/Button'
+import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
 display: flex;
@@ -33,6 +34,13 @@ margin: 20px;
 `
 
 const TripDetailsPage = () => {
+
+  const navigate = useNavigate()
+
+    const goToBack = () => {
+        navigate(-1)
+    }
+
   return (
     <Container>
         <h1>{/* Resultado vai vir da API*/}</h1>
@@ -44,7 +52,7 @@ const TripDetailsPage = () => {
         <p>Data:</p>
 
         <ButtonStyle>
-        <Button className='button2' variant="outlined"><strong>Voltar</strong></Button>
+        <Button onClick={goToBack} className='button2' variant="outlined"><strong>Voltar</strong></Button>
  </ButtonStyle>
     </Container>
   )

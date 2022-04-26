@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -31,13 +32,27 @@ margin: 20px;
 `
 
 const AdminHomePage = () => {
+
+  const navigate = useNavigate()
+  const goToBack = () => {
+    navigate(-1)
+}
+
+const goToCreateTripePage = () => {
+  navigate('/CreateTripPage')
+}
+
+const goToHomePage = () => {
+  navigate('/')
+}
+
   return (
     <Container>
         <h1>Painel Administrativo</h1>
         <ButtonStyle>
-        <Button className='button1' variant="outlined" ><strong>Voltar</strong></Button>
-        <Button className='button2' variant="outlined"><strong>Criar Viagem</strong></Button>
-        <Button className='button2' variant="outlined"><strong>Logout</strong></Button>
+        <Button onClick={goToBack} className='button1' variant="outlined" ><strong>Voltar</strong></Button>
+        <Button onClick={goToCreateTripePage} className='button2' variant="outlined"><strong>Criar Viagem</strong></Button>
+        <Button onClick={goToHomePage} className='button2' variant="outlined"><strong>Logout</strong></Button>
         </ButtonStyle>
 
         {/* <p>Receber API</p> */}
