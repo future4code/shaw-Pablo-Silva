@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { ButtonStyle, Container } from './style';
-import { goToBack,goToCreateTripePage, goToHomePage } from '../../Routes/coordinator';
+import { goToBack,goToCreateTripePage, goToHomePage, goToLoginPage } from '../../Routes/coordinator';
 
 
 
@@ -19,7 +19,7 @@ const AdminHomePage = () => {
         <ButtonStyle>
         <Button onClick={() => goToBack(navigate)} className='button1' variant="outlined" ><strong>Voltar</strong></Button>
         <Button onClick={() => goToCreateTripePage(navigate)} className='button2' variant="outlined"><strong>Criar Viagem</strong></Button>
-        <Button onClick={() => goToHomePage(navigate)} className='button2' variant="outlined"><strong>Logout</strong></Button>
+        <Button onClick={() => goToLoginPage(navigate)} className='button2' variant="outlined"><strong>Logout</strong></Button>
         </ButtonStyle>
 
         {/* <p>Receber API</p> */}

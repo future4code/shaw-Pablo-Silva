@@ -7,6 +7,9 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 margin: 15%;
+
+
+
 p{
     color: SteelBlue ;
 }
@@ -28,5 +31,14 @@ margin: 20px;
 .button2{
     margin-left: 50px;
 }
+`
 
+export const ContainerListTrip = styled.div`
+display: flex;
+border: solid 1px;
+margin: 50px;
+flex-direction: column;
+color: SteelBlue;
+border-radius: 10px;
+align-items: center;
 `
