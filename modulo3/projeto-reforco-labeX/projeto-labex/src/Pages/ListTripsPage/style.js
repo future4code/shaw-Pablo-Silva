@@ -41,4 +41,9 @@ flex-direction: column;
 color: SteelBlue;
 border-radius: 10px;
 align-items: center;
+
+p{
+    margin-left: 30px;
+    margin-right: 30px;
+}
 `

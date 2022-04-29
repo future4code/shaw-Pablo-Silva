@@ -19,8 +19,7 @@ const ApplicationFormPage = () => {
   const [valueAge, setValueAge] = useState('')
   const [valueText, setValueText] = useState('')
   const [valueProfession, setValueProfession] = useState('')
-  const [postTrip, setPostTrip] = useState({})
-
+  
   const onChangeValueName = (event) => {
     setValueName(event.target.value)
 
@@ -71,10 +70,12 @@ const ApplicationFormPage = () => {
 
   const postTrips = async () => {
 
+     const postTrip = () => {
 
+     }
     try {
       const response = await api.post(`trips/${selectTrip}/apply`, body)
-      setPostTrip(response.data.trips)
+      postTrip(response.data.trips)
       alert('Sua requisição foi feita com sucesso')
 
 
@@ -139,7 +140,10 @@ const ApplicationFormPage = () => {
         label="Texto de candidatura"
         variant="standard"
         onChange={onChangeValueText}
-        value={valueText} />
+        value={valueText}
+        multiline
+         />
+        
 
       <TextField
         type='text'

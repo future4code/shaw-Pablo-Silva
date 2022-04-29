@@ -26,3 +26,16 @@ margin: 20px;
 }
 
 `
+
+export const ContainerListTrip = styled.div`
+display: flex;
+border: solid 1px;
+margin: 8px;
+color: SteelBlue;
+border-radius: 10px;
+align-items: center;
+
+p{
+    margin-left: 30px;
+}
+`

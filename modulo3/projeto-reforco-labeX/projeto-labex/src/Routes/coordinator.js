@@ -26,3 +26,7 @@ export const goToApplicationFormPage = (navigate) => {
 export const goToAdminHomePage = (navigate) => {
     navigate('/AdminHomePage')
 }
+
+export const goToDetailPage = (navigate, id) => {
+    navigate(`/TripDetailPage/${id}`)
+}

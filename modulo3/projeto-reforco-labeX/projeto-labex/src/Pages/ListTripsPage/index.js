@@ -8,7 +8,7 @@ import api from '../../Services/api'
 
 
 
-export const ListTripsPage = () => {
+ const ListTripsPage = () => {
     const navigate = useNavigate()
 
     const [listTrips, setListTrips] = useState([])
@@ -19,7 +19,7 @@ export const ListTripsPage = () => {
             setListTrips(response.data.trips)
 
         } catch (error) {
-            console.log('Error')
+            console.log(error.response)
 
         }
     }
