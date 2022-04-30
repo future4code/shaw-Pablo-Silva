@@ -4,16 +4,19 @@ import { useNavigate } from 'react-router-dom'
 import { ButtonStyle, Container, ContainerListTrip } from './style'
 import { goToHomePage, goToApplicationFormPage } from '../../Routes/coordinator'
 import api from '../../Services/api'
+import { Loading } from '../../Components/Loading'
 
 
 
 
- const ListTripsPage = () => {
+const ListTripsPage = () => {
     const navigate = useNavigate()
 
     const [listTrips, setListTrips] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const getTrips = async () => {
+        setLoading(true)
         try {
             const response = await api.get('trips')
             setListTrips(response.data.trips)
@@ -21,6 +24,8 @@ import api from '../../Services/api'
         } catch (error) {
             console.log(error.response)
 
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -30,6 +35,7 @@ import api from '../../Services/api'
 
     const arrayListTrips = listTrips.map((trips) => {
         return (
+
             <ContainerListTrip key={trips.id}>
 
                 <p><strong>Nome:</strong> {trips.name}</p>
@@ -55,7 +61,7 @@ import api from '../../Services/api'
             <h1>Lista de Viagens</h1>
 
             <div>
-                {arrayListTrips}
+                {loading ? (<Loading />) : arrayListTrips}
 
             </div>
 

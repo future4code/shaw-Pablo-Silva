@@ -5,15 +5,21 @@ import api from '../../Services/api'
 import { useProtectedPage } from '../../Hooks/useProtectedPage'
 import { goToAdminHomePage } from '../../Routes/coordinator'
 import { useNavigate, useParams } from 'react-router-dom'
+import { Loading } from '../../Components/Loading'
+
 
 
 
 const TripDetailsPage = () => {
-
   useProtectedPage()
+
+
+
+
   const [listTripDetail, setListTripDetail] = useState({})
   const [listCandidates, setListCandidates] = useState([{}])
   const [candidatesAproved, setCandidatesAproved] = useState([{}])
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
   const params = useParams()
@@ -21,6 +27,7 @@ const TripDetailsPage = () => {
 
 
   const getTripDetail = async () => {
+    setLoading(true)
 
 
     const token = window.localStorage.getItem('token')
@@ -37,10 +44,13 @@ const TripDetailsPage = () => {
     } catch (error) {
       console.log(error.response)
 
+    } finally{
+      setLoading(false)
     }
   }
 
   const getListCandidates = async () => {
+    setLoading(true)
 
 
     const token = window.localStorage.getItem('token')
@@ -58,6 +68,8 @@ const TripDetailsPage = () => {
     } catch (error) {
       console.log(error.response)
 
+    }finally{
+      setLoading(false)
     }
   }
 
@@ -103,9 +115,6 @@ const TripDetailsPage = () => {
       alert('Usuário aprovado com sucesso !')
       getListAproved()
       getListCandidates()
-
-
-
 
     } catch (error) {
       console.log(error.response.data.message)
@@ -194,9 +203,9 @@ const TripDetailsPage = () => {
           <br />
         </ContainerListTrip>
 
-        {arrayListCandidates}
+        { loading ? (<Loading/>) : arrayListCandidates}
         <h3>Candidatos aprovados</h3>
-        {arrayListApproved}
+        { loading ? (<Loading/>) : arrayListApproved}
 
 
       </Container>

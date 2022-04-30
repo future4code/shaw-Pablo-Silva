@@ -6,10 +6,13 @@ import { TextField } from '@mui/material';
 import { Select, MenuItem } from '@mui/material';
 import {goToBack} from '../../Routes/coordinator';
 import api from '../../Services/api';
+import { useProtectedPage } from '../../Hooks/useProtectedPage';
+
 
 
 
 const CreateTripPage = () => {
+    useProtectedPage () 
 
     const [name, setName] = useState('')
     const [planet, setPlanet] = useState('')

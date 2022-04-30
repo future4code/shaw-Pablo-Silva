@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { ButtonStyle, Container, ContainerListTrip } from './style';
-import { goToCreateTripePage, goToLoginPage } from '../../Routes/coordinator';
+import { goToAdminHomePage, goToCreateTripePage, goToLoginPage } from '../../Routes/coordinator';
 import api from '../../Services/api';
 import { goToDetailPage } from '../../Routes/coordinator';
 import {MdDelete} from 'react-icons/md'
+import { useProtectedPage } from '../../Hooks/useProtectedPage';
+import { Loading } from '../../Components/Loading';
 
 
 
@@ -14,11 +16,20 @@ import {MdDelete} from 'react-icons/md'
 
 const AdminHomePage = () => {
 
+  useProtectedPage () 
+
   const navigate = useNavigate()
 
   const [listTrips, setListTrips] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const handleLogout = () => {
+    window.localStorage.removeItem('token')
+    goToLoginPage(navigate)
+  }
 
   const getTrips = async () => {
+    setLoading(true)
     try {
       const response = await api.get('trips')
       setListTrips(response.data.trips)
@@ -26,6 +37,8 @@ const AdminHomePage = () => {
     } catch (error) {
       console.log('Error', error.response)
 
+    }finally {
+      setLoading(false)
     }
   }
 
@@ -42,6 +55,7 @@ const AdminHomePage = () => {
       })
       console.log(response.data.trips);
       alert('Viagem excluída com sucesso :)')
+      getTrips()
 
     } catch (error) {
       console.log(error.response)
@@ -69,17 +83,22 @@ const AdminHomePage = () => {
 
   useEffect(() => {
     getTrips()
-  }, [listTrips])
+    const token = window.localStorage.getItem('token')
+
+    if (token) {
+        goToAdminHomePage(navigate)
+    }
+  }, [])
 
 
   return (
     <Container>
       <h1>Painel Administrativo</h1>
-      {arrayListTrips}
+     {loading ? (<Loading />) : arrayListTrips}
       <ButtonStyle>
         <Button onClick={() => goToLoginPage(navigate)} className='button1' variant="outlined" ><strong>Voltar</strong></Button>
         <Button onClick={() => goToCreateTripePage(navigate)} className='button2' variant="outlined"><strong>Criar Viagem</strong></Button>
-        <Button onClick={() => goToLoginPage(navigate)} className='button2' variant="outlined"><strong>Logout</strong></Button>
+        <Button onClick={() => handleLogout()} className='button2' variant="outlined"><strong>Logout</strong></Button>
       </ButtonStyle>
 
 
