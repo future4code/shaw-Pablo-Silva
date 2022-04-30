@@ -17,6 +17,14 @@ display: flex;
 justify-content: center;
 margin: 20px;
 
+
+
+.MdDelete :hover {
+        color: blue;
+        width: 100px;    
+}
+
+
 .button1{
     margin-right: 50px;
 }

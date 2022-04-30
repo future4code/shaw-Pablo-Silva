@@ -70,10 +70,8 @@ const AdminHomePage = () => {
 
         <p onClick={() => goToDetailPage(navigate, trips.id)}><strong>Nome:</strong> {trips.name}</p>
         <ButtonStyle>
-          <MdDelete size={25} onClick={() => delTrip(trips.id)}          
-            variant="outlined">
-            <strong>Excluir</strong>
-          </MdDelete>
+          <MdDelete className='MdDelete' size={25} onClick={() => delTrip(trips.id)}          
+            variant="outlined"/>
         </ButtonStyle>
 
       </ContainerListTrip>
