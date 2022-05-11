@@ -5,10 +5,10 @@ display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
-input{
+
+.InputPost {
+    margin-top: 30px;
     width: 400px;
-    height: 300px;
-    border-radius: 20px;
 }
 
 `
@@ -20,6 +20,8 @@ flex-direction: column;
 
 img {
     width: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 `
@@ -31,10 +33,15 @@ flex-direction: column;
 border: solid 1px;
 margin: 10px;
 border-radius: 10px;
-background-color: #d3d3d3;
+background-color: #dcdcdc;     
 .fontSize {
     font-size: 13px;
     margin-right: 130px;
+}
+
+.MarginChatBox{
+    margin-left: 100px;
+    
 }
 
 

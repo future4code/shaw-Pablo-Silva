@@ -9,5 +9,12 @@ flex-direction: column;
     margin: 10px;
 }
 
+.InputEmail {
+    margin: 10px;
+}
+
+.InputPassword {
+    margin: 10px;
+}
 
 `

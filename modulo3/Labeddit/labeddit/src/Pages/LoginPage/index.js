@@ -3,6 +3,12 @@ import ImgLogo from '../../img/Logo.png'
 import { useState } from "react"
 import api from "../../Services/api"
 import { useNavigate } from "react-router-dom"
+import { Button, InputAdornment, TextField } from "@mui/material"
+import { grey } from "@mui/material/colors"
+import { AccountCircle } from "@mui/icons-material"
+import KeyIcon from '@mui/icons-material/Key'
+
+
 
 
 
@@ -54,11 +60,40 @@ const LoginPage = () => {
             <img src={ImgLogo} />
             <h1>LabEddit</h1>
             <p>O projeto de rede social da Labenu</p>
-            <input onChange={handleEmail} value={email} type='email' placeholder="Email" />
-            <input onChange={handlePassword} value={password} type='password' placeholder="Senha" />
+            <TextField
+                onChange={handleEmail}
+                className="InputEmail"
+                id="input-with-icon-textfield"
+                label="E-mail"
+                variant="standard"
+                type="email"
+                InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <AccountCircle />
+                      </InputAdornment>
+                    ),
+                  }}
+            />
 
-            <button onClick={postLogin} className="button1">Continuar</button>
-            <button onClick={() => navigate('/RegisterPage')} className="button2">Crie uma conta!</button>
+            <TextField
+                onChange={handlePassword}
+                className="InputPassword"
+                id="input-with-icon-textfield"
+                label="Senha"
+                variant="standard"
+                type="password"
+                InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <KeyIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+            />
+
+            <Button style={{ color: grey[900] }} onClick={postLogin} className="button1">Continuar</Button>
+            <Button style={{ color: grey[900] }} onClick={() => navigate('/RegisterPage')} className="button2">Crie uma conta!</Button>
         </MainContainer>
     )
 

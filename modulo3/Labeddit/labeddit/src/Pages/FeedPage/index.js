@@ -4,12 +4,17 @@ import api from '../../Services/api'
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import { useProtectedPage } from '../../Hooks/useProtectedPage'
+import { TextField } from '@mui/material'
+import { Button } from '@mui/material'
+import { grey } from "@mui/material/colors"
+import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
+import { IoMdChatboxes } from 'react-icons/io'
 
 
 
 
 const FeedPage = () => {
-    useProtectedPage() 
+    useProtectedPage()
 
     const [posts, setPosts] = useState([])
     const [post, setPost] = useState('')
@@ -27,11 +32,11 @@ const FeedPage = () => {
     const handleLogout = () => {
         window.localStorage.removeItem('token')
         navigate('/')
-      }
+    }
 
 
-    const getPosts = async () => {
-        
+    const getPosts = async (props) => {
+
         const token = window.localStorage.getItem('token')
 
         try {
@@ -59,7 +64,7 @@ const FeedPage = () => {
         }
 
         try {
-            const response = await api.post(`posts`, body,
+            await api.post(`posts`, body,
                 {
                     headers: {
                         Authorization: token
@@ -84,10 +89,19 @@ const FeedPage = () => {
 
     const arrayPosts = posts.map((item) => {
         return (
-            <CardPosts>
-                <p className='fontSize'>Enviado por: {item.username}</p>
+            <CardPosts onClick={() => navigate(`/PostPage/${item.id}`)} key={item.id}>
+                <p className='fontSize'>Enviado por: <strong>{item.username}</strong></p>
                 <h3>{item.title}</h3>
                 <p>{item.body}</p>
+
+                <div>
+                <AiOutlineArrowUp size={30}/>
+                <strong>{item.voteSum}</strong>
+                <AiOutlineArrowDown size={30}/>    
+                
+                <IoMdChatboxes className='MarginChatBox' size={30}/>  
+                <strong>{item.commentCount}</strong>
+                </div>
             </CardPosts>
         )
     })
@@ -98,13 +112,13 @@ const FeedPage = () => {
         <MainContainer>
             <ContainerLogo>
 
-                <button onClick={handleLogout}>Logout</button>
+                <Button style={{color: grey[900]}} onClick={handleLogout}><strong>Logout</strong></Button>
                 <img src={ImgLogo} />
 
             </ContainerLogo>
-            <input onChange={handleTitle} value={title} placeholder='Digite o título do seu post' />
-            <input onChange={handlePost} value={post} placeholder='Digite seu post...' />
-            <button onClick={postPosts}>Enviar post</button>
+            <TextField onChange={handleTitle} value={title} placeholder='Digite o título do seu post' />
+            <TextField className='InputPost' multiline onChange={handlePost} value={post} placeholder='Digite seu post...' />
+            <Button  style={{color: grey[900]}} onClick={postPosts} className="button1"><strong>Enviar post</strong></Button>
             {arrayPosts}
 
         </MainContainer>

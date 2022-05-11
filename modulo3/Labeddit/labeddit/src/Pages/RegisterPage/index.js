@@ -3,6 +3,8 @@ import { MainContainer } from "./style"
 import ImgLogo from '../../img/Logo.png'
 import api from "../../Services/api"
 import { useNavigate } from "react-router-dom"
+import { Button, TextField } from '@mui/material'
+import { grey } from '@mui/material/colors'
 
 
 
@@ -58,9 +60,9 @@ const RegisterPage = () => {
 
             <h2>Olá, boas vindas ao LabEddit ;)</h2>
 
-            <input onChange={handleName} value={name} type='text' placeholder="Nome de usuário" />
-            <input onChange={handleEmail} value={email} type='email' placeholder="E-mail" />
-            <input onChange={handlePassword} value={password} type='password' placeholder="Senha" />
+            <TextField variant="standard" onChange={handleName} value={name} type='text' label="Nome de usuário" />
+            <TextField variant="standard" onChange={handleEmail} value={email} type='email' label="E-mail" />
+            <TextField variant="standard" onChange={handlePassword} value={password} type='password' label="Senha" />
 
             <p>Ao continuar, você concorda com o nosso contrato de usuário e nossa política de privacidade</p>
             <div>
@@ -68,7 +70,7 @@ const RegisterPage = () => {
                 <label for="scales">Eu concordo em receber e-mails do LabeEddit</label>
             </div>
 
-            <button onClick={postCreateRegister}>Cadastrar</button>
+            <Button style={{ color: grey[900] }} onClick={postCreateRegister}><strong>Cadastrar</strong></Button>
         </MainContainer>
     )
 }

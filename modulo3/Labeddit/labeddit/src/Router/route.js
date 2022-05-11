@@ -23,7 +23,7 @@ export const Router = () => {
 
                     <Route index element={<LoginPage />} />
                     <Route path='FeedPage' element={<FeedPage />} />
-                    <Route path='PostPage' element={<PostPage />} />
+                    <Route path='PostPage/:id' element={<PostPage />} />
                     <Route path='RegisterPage' element={<RegisterPage />} />
 
                 </Routes>
