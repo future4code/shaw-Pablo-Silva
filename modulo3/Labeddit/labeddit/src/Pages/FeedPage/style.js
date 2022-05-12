@@ -33,7 +33,8 @@ flex-direction: column;
 border: solid 1px;
 margin: 10px;
 border-radius: 10px;
-background-color: #dcdcdc;     
+background-color: #dcdcdc;   
+position: static;
 .fontSize {
     font-size: 13px;
     margin-right: 130px;

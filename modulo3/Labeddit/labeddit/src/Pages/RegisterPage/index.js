@@ -41,13 +41,13 @@ const RegisterPage = () => {
         }
 
         try {
-            const response = await api.post(`users/signup`, body)
+            await api.post(`users/signup`, body)
             alert('Cadastro criado com sucesso !')
             navigate('/')
-            console.log(response.data);
+
 
         } catch (error) {
-            console.log(error.response)
+
             alert('Erro ao criar cadastro. Confira se você digitou entre 8 e 30 caracteres na senha !')
         }
     }

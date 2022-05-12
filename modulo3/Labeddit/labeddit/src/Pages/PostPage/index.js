@@ -7,10 +7,6 @@ import { Button, TextField } from "@mui/material"
 import { grey } from "@mui/material/colors"
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'
 
-
-
-
-
 const PostPage = () => {
     useProtectedPage()
 
@@ -40,12 +36,11 @@ const PostPage = () => {
                 }
             }
             )
-            console.log(response.data);
             setCommentPosts(response.data)
 
 
         } catch (error) {
-            console.log(error.response)
+
         }
     }
 
@@ -69,11 +64,74 @@ const PostPage = () => {
             getComments()
 
         } catch (error) {
-            console.log(error.response)
             alert('Erro ao enviar post')
             getComments()
         }
     }
+
+    const postVotePost = async (id) => {
+        const token = window.localStorage.getItem('token')
+        const body = {
+            direction: 1
+        }
+        try {
+            await api.post(`comments/${id}/votes`, body,
+                {
+                    headers: {
+                        Authorization: token
+                    }
+                }
+
+            )
+            alert('Voto computado')
+            getComments()
+
+        } catch (error) {
+            alert('Erro ao votar')
+        }
+    }
+
+    const putVotePost = async (id) => {
+        const token = window.localStorage.getItem('token')
+        const body = {
+            direction: -1
+        }
+        try {
+            await api.put(`comments/${id}/votes`, body,
+                {
+                    headers: {
+                        Authorization: token
+                    }
+                }
+
+            )
+            alert('Voto computado')
+            getComments()
+
+        } catch (error) {
+            alert('Erro ao votar')
+        }
+    }
+
+    // const delVoteComments = async (id) => {
+    //     const token = window.localStorage.getItem('token')
+
+    //     try {
+    //         await api.delete(`posts/${id}/votes`,
+    //             {
+    //                 headers: {
+    //                     Authorization: token
+    //                 }
+    //             }
+
+    //         )
+    //         alert('Voto excluído !')
+    //         getComments()
+
+    //     } catch (error) {
+    //         alert('Erro excluir voto !')
+    //     }
+    // }
 
 
 
@@ -89,9 +147,9 @@ const PostPage = () => {
                 <p className="fontSize">Enviado por: <strong>{item.username}</strong></p>
                 <p>{item.body}</p>
                 <div>
-                    <AiOutlineArrowUp size={30} />
-                    {item.votesum}
-                    <AiOutlineArrowDown size={30} />
+                    <AiOutlineArrowUp onClick={() => postVotePost(item.id)} size={30} />
+                    {item.voteSum}
+                    <AiOutlineArrowDown onClick={() => putVotePost(item.id)} size={30} />
                 </div>
 
             </CardComment>

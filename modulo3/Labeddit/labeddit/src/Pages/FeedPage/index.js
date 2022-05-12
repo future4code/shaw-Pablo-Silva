@@ -13,6 +13,7 @@ import { IoMdChatboxes } from 'react-icons/io'
 
 
 
+
 const FeedPage = () => {
     useProtectedPage()
 
@@ -35,7 +36,7 @@ const FeedPage = () => {
     }
 
 
-    const getPosts = async (props) => {
+    const getPosts = async () => {
 
         const token = window.localStorage.getItem('token')
 
@@ -46,13 +47,11 @@ const FeedPage = () => {
                 }
             }
             )
-            console.log(response.data);
             setPosts(response.data)
             setTitle('')
             setPost('')
 
         } catch (error) {
-            console.log(error.response)
         }
     }
 
@@ -76,10 +75,73 @@ const FeedPage = () => {
             alert('Seu post foi criado com sucesso !')
 
         } catch (error) {
-            console.log(error.response)
             alert('Erro ao criar post')
         }
     }
+
+    const postVotePost = async (id) => {
+        const token = window.localStorage.getItem('token')
+        const body = {
+            direction: 1
+        }
+        try {
+            await api.post(`posts/${id}/votes`, body,
+                {
+                    headers: {
+                        Authorization: token
+                    }
+                }
+
+            )
+            alert('Voto computado')
+            getPosts()
+
+        } catch (error) {
+            alert('Erro ao votar')
+        }
+    }
+
+    const putVotePost = async (id) => {
+        const token = window.localStorage.getItem('token')
+        const body = {
+            direction: -1
+        }
+        try {
+            await api.put(`posts/${id}/votes`, body,
+                {
+                    headers: {
+                        Authorization: token
+                    }
+                }
+
+            )
+            alert('Voto computado')
+            getPosts()
+
+        } catch (error) {
+            alert('Erro ao votar')
+        }
+    }
+
+    // const delVotePost = async (id) => {
+    //     const token = window.localStorage.getItem('token')
+
+    //     try {
+    //         await api.delete(`posts/${id}/votes`,
+    //             {
+    //                 headers: {
+    //                     Authorization: token
+    //                 }
+    //             }
+
+    //         )
+    //         alert('Voto excluído !')
+    //         getPosts()
+
+    //     } catch (error) {
+    //         alert('Erro excluir voto !')
+    //     }
+    // }
 
     useEffect(() => {
         getPosts()
@@ -89,18 +151,18 @@ const FeedPage = () => {
 
     const arrayPosts = posts.map((item) => {
         return (
-            <CardPosts onClick={() => navigate(`/PostPage/${item.id}`)} key={item.id}>
+            <CardPosts key={item.id}>
                 <p className='fontSize'>Enviado por: <strong>{item.username}</strong></p>
                 <h3>{item.title}</h3>
                 <p>{item.body}</p>
 
                 <div>
-                <AiOutlineArrowUp size={30}/>
-                <strong>{item.voteSum}</strong>
-                <AiOutlineArrowDown size={30}/>    
-                
-                <IoMdChatboxes className='MarginChatBox' size={30}/>  
-                <strong>{item.commentCount}</strong>
+                    <AiOutlineArrowUp onClick={() => postVotePost(item.id)} size={30} />
+                    <strong>{item.voteSum}</strong>
+                    <AiOutlineArrowDown onClick={() => putVotePost(item.id)} size={30} />
+
+                    <IoMdChatboxes onClick={() => navigate(`/PostPage/${item.id}`)} className='MarginChatBox' size={30} />
+                    <strong>{item.commentCount}</strong>
                 </div>
             </CardPosts>
         )
@@ -112,13 +174,13 @@ const FeedPage = () => {
         <MainContainer>
             <ContainerLogo>
 
-                <Button style={{color: grey[900]}} onClick={handleLogout}><strong>Logout</strong></Button>
+                <Button style={{ color: grey[900] }} onClick={handleLogout}><strong>Logout</strong></Button>
                 <img src={ImgLogo} />
 
             </ContainerLogo>
             <TextField onChange={handleTitle} value={title} placeholder='Digite o título do seu post' />
             <TextField className='InputPost' multiline onChange={handlePost} value={post} placeholder='Digite seu post...' />
-            <Button  style={{color: grey[900]}} onClick={postPosts} className="button1"><strong>Enviar post</strong></Button>
+            <Button style={{ color: grey[900] }} onClick={postPosts} className="button1"><strong>Enviar post</strong></Button>
             {arrayPosts}
 
         </MainContainer>

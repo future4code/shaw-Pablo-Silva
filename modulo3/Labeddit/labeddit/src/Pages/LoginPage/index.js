@@ -41,13 +41,11 @@ const LoginPage = () => {
             const response = await api.post(`users/login`, body)
             alert('Seja bem vindo !')
             window.localStorage.setItem("token", response.data.token)
-            navigate('/FeedPage')
-            console.log(response.data.token);
+            navigate('/FeedPage')            
             setEmail('')
             setPassword('')
 
-        } catch (error) {
-            console.log(error.response)
+        } catch (error) {            
             alert('Usuário e/ou senha incorretas')
         }
     }
