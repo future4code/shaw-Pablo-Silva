@@ -1,4 +1,4 @@
-import ImgLogo from '../../img/Logo.png'
+import ImgLogo from '../../img/RedditLogo.png'
 import { MainContainer, ContainerLogo, CardPosts } from './style'
 import api from '../../Services/api'
 import { useEffect, useState } from 'react'
@@ -9,17 +9,16 @@ import { Button } from '@mui/material'
 import { grey } from "@mui/material/colors"
 import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
 import { IoMdChatboxes } from 'react-icons/io'
+import { Loading } from '../../Components/Loading'
 
 
-
-
-
-const FeedPage = () => {
+const FeedPage = (props) => {
     useProtectedPage()
 
     const [posts, setPosts] = useState([])
     const [post, setPost] = useState('')
     const [title, setTitle] = useState('')
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
     const handleTitle = (event) => {
@@ -37,7 +36,7 @@ const FeedPage = () => {
 
 
     const getPosts = async () => {
-
+        setLoading(true)
         const token = window.localStorage.getItem('token')
 
         try {
@@ -52,6 +51,9 @@ const FeedPage = () => {
             setPost('')
 
         } catch (error) {
+
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -123,30 +125,56 @@ const FeedPage = () => {
         }
     }
 
-    // const delVotePost = async (id) => {
-    //     const token = window.localStorage.getItem('token')
+    const buttonLike = (id, vote) => {
+      if(vote == 1){
+          delVotePost(id)
 
-    //     try {
-    //         await api.delete(`posts/${id}/votes`,
-    //             {
-    //                 headers: {
-    //                     Authorization: token
-    //                 }
-    //             }
+      }else {
+          postVotePost(id)
+      }
 
-    //         )
-    //         alert('Voto excluído !')
-    //         getPosts()
+    }
 
-    //     } catch (error) {
-    //         alert('Erro excluir voto !')
-    //     }
-    // }
+    const buttonDislike = (id, vote) => {
+        if(vote == -1){
+            delVotePost(id)
+  
+        }else {
+            putVotePost(id)
+        }
+  
+      }
+
+
+    const delVotePost = async (id) => {
+        const token = window.localStorage.getItem('token')
+
+        try {
+            await api.delete(`posts/${id}/votes`,
+                {
+                    headers: {
+                        Authorization: token
+                    }
+                }
+
+            )
+            alert('Voto excluído !')
+            getPosts()
+
+        } catch (error) {
+            alert('Erro excluir voto !')
+        }
+    }
 
     useEffect(() => {
         getPosts()
 
     }, [])
+
+    const goToCommentPage = (item) => {
+        props.setCurrentPost(item)
+        navigate(`/PostPage/${item.id}`)
+    }
 
 
     const arrayPosts = posts.map((item) => {
@@ -157,11 +185,11 @@ const FeedPage = () => {
                 <p>{item.body}</p>
 
                 <div>
-                    <AiOutlineArrowUp onClick={() => postVotePost(item.id)} size={30} />
+                    <AiOutlineArrowUp color={item.userVote == 1 ? 'orange' : 'black'} onClick={() => buttonLike( item.id, item.userVote)} size={30} />
                     <strong>{item.voteSum}</strong>
-                    <AiOutlineArrowDown onClick={() => putVotePost(item.id)} size={30} />
+                    <AiOutlineArrowDown color={item.userVote == -1 ? 'orange' : 'black'} onClick={() =>  buttonDislike(item.id, item.userVote)} size={30} />
 
-                    <IoMdChatboxes onClick={() => navigate(`/PostPage/${item.id}`)} className='MarginChatBox' size={30} />
+                    <IoMdChatboxes onClick={() => goToCommentPage(item)} className='MarginChatBox' size={30} />
                     <strong>{item.commentCount}</strong>
                 </div>
             </CardPosts>
@@ -181,7 +209,7 @@ const FeedPage = () => {
             <TextField onChange={handleTitle} value={title} placeholder='Digite o título do seu post' />
             <TextField className='InputPost' multiline onChange={handlePost} value={post} placeholder='Digite seu post...' />
             <Button style={{ color: grey[900] }} onClick={postPosts} className="button1"><strong>Enviar post</strong></Button>
-            {arrayPosts}
+            {loading ? (<Loading />) : arrayPosts}
 
         </MainContainer>
     )

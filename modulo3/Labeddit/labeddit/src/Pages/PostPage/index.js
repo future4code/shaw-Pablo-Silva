@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react"
-import { MainContainer, CardComment } from "./style"
+import ImgLogo from '../../img/RedditLogo.png'
+import { MainContainer, CardComment, CardPosts } from "./style"
 import api from "../../Services/api"
 import { useNavigate, useParams } from "react-router-dom"
 import { useProtectedPage } from "../../Hooks/useProtectedPage"
 import { Button, TextField } from "@mui/material"
 import { grey } from "@mui/material/colors"
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai'
+import { Loading } from '../../Components/Loading'
 
-const PostPage = () => {
+const PostPage = (props) => {
     useProtectedPage()
 
     const [commentPosts, setCommentPosts] = useState([])
     const [comment, setComment] = useState('')
+    const [loading, setLoading] = useState(false)
     const params = useParams()
     const navigate = useNavigate()
 
@@ -26,6 +29,7 @@ const PostPage = () => {
 
 
     const getComments = async () => {
+        setLoading(true)
 
         const token = window.localStorage.getItem('token')
 
@@ -41,6 +45,8 @@ const PostPage = () => {
 
         } catch (error) {
 
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -113,25 +119,45 @@ const PostPage = () => {
         }
     }
 
-    // const delVoteComments = async (id) => {
-    //     const token = window.localStorage.getItem('token')
+    const delVoteComments = async (id) => {
+        const token = window.localStorage.getItem('token')
 
-    //     try {
-    //         await api.delete(`posts/${id}/votes`,
-    //             {
-    //                 headers: {
-    //                     Authorization: token
-    //                 }
-    //             }
+        try {
+            await api.delete(`comments/${id}/votes`,
+                {
+                    headers: {
+                        Authorization: token
+                    }
+                }
 
-    //         )
-    //         alert('Voto excluído !')
-    //         getComments()
+            )
+            alert('Voto excluído !')
+            getComments()
 
-    //     } catch (error) {
-    //         alert('Erro excluir voto !')
-    //     }
-    // }
+        } catch (error) {
+            alert('Erro excluir voto !')
+        }
+    }
+
+    const buttonLike = (id, vote) => {
+        if (vote == 1) {
+            delVoteComments(id)
+
+        } else {
+            postVotePost(id)
+        }
+
+    }
+
+    const buttonDislike = (id, vote) => {
+        if (vote == -1) {
+            delVoteComments(id)
+
+        } else {
+            putVotePost(id)
+        }
+
+    }
 
 
 
@@ -147,9 +173,9 @@ const PostPage = () => {
                 <p className="fontSize">Enviado por: <strong>{item.username}</strong></p>
                 <p>{item.body}</p>
                 <div>
-                    <AiOutlineArrowUp onClick={() => postVotePost(item.id)} size={30} />
-                    {item.voteSum}
-                    <AiOutlineArrowDown onClick={() => putVotePost(item.id)} size={30} />
+                    <AiOutlineArrowUp color={item.userVote == 1 ? 'orange' : 'black'} onClick={() => buttonLike(item.id, item.userVote)} size={30} />
+                    <strong>{item.voteSum}</strong>
+                    <AiOutlineArrowDown color={item.userVote == -1 ? 'orange' : 'black'} onClick={() => buttonDislike(item.id, item.userVote)} size={30} />
                 </div>
 
             </CardComment>
@@ -162,11 +188,17 @@ const PostPage = () => {
         <MainContainer>
             <Button style={{ color: grey[900] }} onClick={handleLogout}><strong>Logout</strong></Button>
             <Button style={{ color: grey[900] }} onClick={() => navigate(-1)}><strong>Voltar</strong></Button>
+            <img src={ImgLogo} />
+            <CardPosts key={props.currentPost.id}>
+                <p className='fontSize'>Enviado por: <strong>{props.currentPost.username}</strong></p>
+                <h3>{props.currentPost.title}</h3>
+                <p>{props.currentPost.body}</p>
+            </CardPosts>
+
             <TextField multiline onChange={handleComment} value={comment} placeholder="Adicionar comentário..." />
-            <Button style={{ color: grey[900] }} onClick={postComment}>Enviar comentário</Button>
+            <Button style={{ color: grey[900] }} onClick={postComment}><strong>Enviar comentário</strong></Button>
 
-
-            {arrayCommentPosts}
+            {loading ? (<Loading />) : arrayCommentPosts}
 
 
         </MainContainer>

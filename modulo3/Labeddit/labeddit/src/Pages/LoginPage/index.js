@@ -1,5 +1,5 @@
 import { MainContainer } from "./style"
-import ImgLogo from '../../img/Logo.png'
+import ImgLogo from '../../img/RedditLogo.png'
 import { useState } from "react"
 import api from "../../Services/api"
 import { useNavigate } from "react-router-dom"
@@ -7,10 +7,6 @@ import { Button, InputAdornment, TextField } from "@mui/material"
 import { grey } from "@mui/material/colors"
 import { AccountCircle } from "@mui/icons-material"
 import KeyIcon from '@mui/icons-material/Key'
-
-
-
-
 
 
 const LoginPage = () => {

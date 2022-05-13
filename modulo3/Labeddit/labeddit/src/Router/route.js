@@ -4,6 +4,8 @@ import FeedPage from '../Pages/FeedPage'
 import PostPage from '../Pages/PostPage'
 import RegisterPage from '../Pages/RegisterPage'
 import styled from 'styled-components'
+import { useState } from 'react'
+
 
 const GlobalStyled = styled.div`
 margin: 0px;
@@ -14,7 +16,10 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 
 
 export const Router = () => {
+    const [currentPost, setCurrentPost] = useState({})
     return (
+
+        
 
         <GlobalStyled>
             <BrowserRouter>
@@ -22,8 +27,8 @@ export const Router = () => {
                 <Routes>
 
                     <Route index element={<LoginPage />} />
-                    <Route path='FeedPage' element={<FeedPage />} />
-                    <Route path='PostPage/:id' element={<PostPage />} />
+                    <Route path='FeedPage' element={<FeedPage setCurrentPost = {setCurrentPost} />} />
+                    <Route path='PostPage/:id' element={<PostPage currentPost = {currentPost} />} />
                     <Route path='RegisterPage' element={<RegisterPage />} />
 
                 </Routes>

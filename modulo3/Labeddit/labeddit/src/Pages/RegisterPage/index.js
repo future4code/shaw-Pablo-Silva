@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { MainContainer } from "./style"
-import ImgLogo from '../../img/Logo.png'
+import ImgLogo from '../../img/RedditLogo.png'
 import api from "../../Services/api"
 import { useNavigate } from "react-router-dom"
 import { Button, TextField } from '@mui/material'
@@ -71,6 +71,7 @@ const RegisterPage = () => {
             </div>
 
             <Button style={{ color: grey[900] }} onClick={postCreateRegister}><strong>Cadastrar</strong></Button>
+            <Button style={{ color: grey[900] }} onClick={() => navigate('/')}><strong>Voltar</strong></Button>
         </MainContainer>
     )
 }

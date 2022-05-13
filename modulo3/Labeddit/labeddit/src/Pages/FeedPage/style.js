@@ -19,9 +19,10 @@ flex-direction: row-reverse;
 flex-direction: column;
 
 img {
-    width: 40px;
+    width: 150px;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 20px;
 }
 
 `
@@ -33,8 +34,9 @@ flex-direction: column;
 border: solid 1px;
 margin: 10px;
 border-radius: 10px;
-background-color: #dcdcdc;   
+background-image: linear-gradient(OrangeRed, white);   
 position: static;
+width: 350px;
 .fontSize {
     font-size: 13px;
     margin-right: 130px;
