@@ -3,5 +3,4 @@ export type Adress = {
     bairro: string,
     cidade: string,
     estado: string,
-
 }
