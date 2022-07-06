@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./build/index.js",
     "build": "tsc",
-    "dev": "tsnd src/index.ts"
+    "dev": "tsnd src/index.ts",
+    "migrations": "tsc && node ./build/migrations.js"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,7 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^2.1.0",
     "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
     "uuid": "^8.3.2"
   }
 }
