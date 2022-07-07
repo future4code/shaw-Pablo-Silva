@@ -1,8 +1,9 @@
 import UserData from "../Data/UserData";
 import User from "../Model/User";
-import { Authenticator } from "../Services/Authenticator";
+import { Authenticator, AuthenticatorEmail } from "../Services/Authenticator";
 import { HashManager } from "../Services/HashManager";
 import { IdGenerator } from "../Services/IdGenerator";
+import { Login } from "../Types/login";
 import { SignupInputDTO } from "../Types/signupDTO";
 
 export default class UserBusiness {
@@ -12,7 +13,7 @@ export default class UserBusiness {
         private idGenerator: IdGenerator,
         private hashManager: HashManager,
         private authenticator: Authenticator
-    ){}
+    ) { }
     signup = async (input: SignupInputDTO) => {
         //validação
         const { name, email, password } = input
@@ -45,11 +46,48 @@ export default class UserBusiness {
         )
 
         await this.userData.insert(user)
-          
+
         //criar token
-        const token = this.authenticator.generateToken({id})
+        const token = this.authenticator.generateToken({ id })
 
         //retornar o token
         return token
     }
 }
+
+export class UserBusinessLogin {
+
+    constructor(
+        private userData: UserData,
+        private authenticator: AuthenticatorEmail,
+        private hashManager: HashManager
+    ) { }
+
+    login = async (inputLogin: Login) => {
+        //validação
+        const { email, password } = inputLogin
+
+        if (!email || !password) {
+            throw new Error('Campos inválidos')
+        }
+        //conferir se o usuário existe ou não existe
+
+        const userExists = await this.userData.findByEmail(email)
+        if (!userExists) {
+            throw new Error('Usuário não cadastrado !')
+        }  
+
+        const passWordIscorrect = await this.userData.findByPassword(password)
+        if (!passWordIscorrect) {
+            throw new Error('Usuário não cadastrado !')
+        }              
+
+        //criar token
+        const token = this.authenticator.generateTokenLogin({email})
+
+        //retornar o token
+        
+    }
+}
+
+

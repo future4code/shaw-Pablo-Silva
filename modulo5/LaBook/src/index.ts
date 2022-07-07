@@ -1,8 +1,8 @@
-import UserBusiness from "./Business/UserBusiness";
+import UserBusiness, { UserBusinessLogin } from "./Business/UserBusiness";
 import { app } from "./Controller/app";
-import UserController from "./Controller/UserController";
+import UserController, { UserControllerLogin } from "./Controller/UserController";
 import UserData from "./Data/UserData";
-import { Authenticator } from "./Services/Authenticator";
+import { Authenticator, AuthenticatorEmail } from "./Services/Authenticator";
 import { HashManager } from "./Services/HashManager";
 import { IdGenerator } from "./Services/IdGenerator";
 
@@ -14,5 +14,13 @@ const userController = new UserController(
         new Authenticator()
     )
 )
-
 app.post('/user/signup', userController.signup)
+
+const userControllerLogin = new UserControllerLogin(
+    new UserBusinessLogin(
+        new UserData(),           
+        new AuthenticatorEmail()
+    )
+)
+
+app.post('/user/login', userControllerLogin.login)

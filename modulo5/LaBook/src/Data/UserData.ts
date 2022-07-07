@@ -31,4 +31,19 @@ export default class UserDate extends BaseDataBase {
 
         }
     }
+
+    findByPassword = async (password: string) => {
+        try {
+            const queryResult = await BaseDataBase
+                .connection(this.TABLE_NAME)
+                .select()
+                .where({ password })
+            return queryResult[0]
+        } catch (error) {
+            throw new Error()
+    
+        }
+    }
+    
 }
+
