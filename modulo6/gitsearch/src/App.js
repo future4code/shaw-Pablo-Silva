@@ -1,9 +1,10 @@
+import { GlobalStyle } from './Routes/GlobalStyle';
 import { Router } from './Routes/Router';
 function App() {
   return (
-    <div>
+    <GlobalStyle>
       <Router/>
-    </div>
+    </GlobalStyle>
   );
 }
 
