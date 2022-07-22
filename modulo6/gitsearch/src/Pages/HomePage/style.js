@@ -8,6 +8,8 @@ flex-direction: column;
 `
 export const ContainerInputButton = styled.div`
 display: flex;
+margin-top: 60px;
+
 @media(max-width: 1000px){
     flex-direction: column;
     width: 300px;
@@ -25,7 +27,27 @@ height: 50px;
 margin: 10px;
 `
 
+export const IconHistory = styled.div`
+display: flex;
+margin-left: 1500px;
+margin-top: -60px;
+cursor: pointer;
+@media(max-width: 1000px){
+margin-left: 45px;
+margin-top: -10px;
+
+
+}
+
+`
+
+export const ImgIconHistory = styled.img`
+width: 35px;
+`
+
 export const ConstainerIcon = styled.div`
 display: flex;
+align-items: center;
+flex-direction: row-reverse;
 
 `
