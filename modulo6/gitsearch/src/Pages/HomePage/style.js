@@ -4,7 +4,6 @@ export const MainContainer = styled.div`
 display: flex;
 align-items: center;
 flex-direction: column;
-
 `
 export const ContainerInputButton = styled.div`
 display: flex;
@@ -12,7 +11,8 @@ margin-top: 60px;
 
 @media(max-width: 1000px){
     flex-direction: column;
-    width: 300px;
+    width: 250px;
+    overflow: hidden;
 }
 `
 
@@ -29,7 +29,7 @@ margin: 10px;
 
 export const IconHistory = styled.div`
 display: flex;
-margin-left: 1500px;
+margin-left: 1300px;
 margin-top: -60px;
 cursor: pointer;
 @media(max-width: 1000px){

@@ -1,16 +1,16 @@
-import { ConstainerIcon, ContainerInputButton, IconHistory, Image, ImageIcon, ImgIconHistory, MainContainer } from "./style"
+import { ConstainerIcon, ContainerInputButton, IconHistory, ImageIcon, ImgIconHistory, MainContainer } from "./style"
 import TextField from "@mui/material/TextField"
 import Box from "@mui/material/Box"
 import { Button, InputAdornment } from "@mui/material"
 import SendIcon from '@mui/icons-material/Send';
 import { useState } from "react";
-import api from '../../Services/api'
 import iconGit from '../../Img/iconGit.png'
-import moment from "moment";
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from "react-router-dom";
 import { goToHistoryPage } from "../../Routes/Coordinator";
 import IconHistoryIMG from '../../Img/IconHistory.png'
+import { UserInfo } from "../../Components/userInfo";
+import { getUserRequest } from "../../Services/getUserRequest";
 
 
 const HomePage = () => {
@@ -30,29 +30,12 @@ const HomePage = () => {
         localStorage.setItem('items', JSON.stringify(items))
     }
 
-
-
-    const getUserGitHub = async () => {
-
-        try {
-            const response = await api.get(`${searchInput}`)
-            setUserGit(response.data)
-
-
-        } catch (error) {
-
-            alert('Erro ao pesquisar usuário !')
-
-        }
-    }
-
     function handleSearch() {
-        getUserGitHub()
+        getUserRequest(setUserGit, searchInput)
         setItemLocalStorage()
     }
 
 
-    const DateFormat = moment(userGit.created_at).format('DD/MM/YYYY')
 
 
     return (
@@ -112,20 +95,8 @@ const HomePage = () => {
                 </Button>
             </ContainerInputButton>
 
-            <h3>{userGit.name}</h3>
-            <Image src={userGit.avatar_url} />
-            <p>{userGit.email}</p>
-            <h5>{userGit.bio}</h5>
 
-            {userGit.name ? (<>
-                <p>Repositórios públicos: {userGit.public_repos}</p>
-                <a href={userGit.html_url} target="_blank">Para saber mais, clique aqui</a>
-                <p>Usuário desde: {DateFormat}</p>
-            </>
-            ) : (<p></p>)
-
-            }
-
+            <UserInfo userGit={userGit} />
 
 
 
