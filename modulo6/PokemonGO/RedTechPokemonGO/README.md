@@ -1,7 +1,3 @@
-Membros do grupo:
+Documentação api: https://documenter.getpostman.com/view/20349301/VUjLJRuv
 
-Pablo Andrade,
-Yasmin Conceição,
-Natã Silva
-
-Documentação da API: https://documenter.getpostman.com/view/20349301/UzQvs4aB
+Projeto escolhido: https://github.com/RedFoxTech/vaga-backend-teste
