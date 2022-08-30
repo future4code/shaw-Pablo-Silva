@@ -1,3 +1,3 @@
-Projeto escolhido: https://github.com/future4code/vaughan-Paulo-Lopes/tree/master/Cases/case-brain-nco
+Projeto escolhido: https://github.com/brainnco-exs/readme-frontend
 
 Link surge: cooperative-jar.surge.sh
